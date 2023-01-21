@@ -3,6 +3,9 @@
 #include "core.h"
 
 #include "libpebble/platforminterface.h"
+#include <KF5/BluezQt/bluezqt/manager.h>
+#include <KF5/BluezQt/bluezqt/initmanagerjob.h>
+#include <KF5/BluezQt/bluezqt/pendingcall.h>
 
 #include <QHash>
 
@@ -14,7 +17,11 @@
 
 PebbleManager::PebbleManager(QObject *parent) : QObject(parent)
 {
-    m_bluezClient = new BluezClient(this);
+    m_bluezManager = new BluezQt::Manager();
+    BluezQt::InitManagerJob *initJob = manager->init();
+    initJob->exec();
+
+    auto profile = new 
     connect(m_bluezClient, &BluezClient::devicesChanged, this, &PebbleManager::loadPebbles);
     loadPebbles();
 }

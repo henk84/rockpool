@@ -6,9 +6,9 @@
 #include "healthparams.h"
 
 #include <QObject>
-#include <QBluetoothAddress>
-#include <QBluetoothLocalDevice>
 #include <QDateTime>
+using BluezQt;
+#include <Device>
 
 class WatchConnection;
 class MusicEndpoint;
@@ -41,8 +41,8 @@ class Pebble : public QObject
 {
     Q_OBJECT
     Q_ENUMS(Pebble::NotificationType)
-    Q_PROPERTY(QBluetoothAddress address MEMBER m_address)
-    Q_PROPERTY(QString name MEMBER m_name)
+    Q_PROPERTY(QString address READ address)
+    Q_PROPERTY(QString name READ name)
     Q_PROPERTY(HardwareRevision HardwareRevision READ hardwareRevision)
     Q_PROPERTY(Model model READ model)
     Q_PROPERTY(HardwarePlatform hardwarePlatform MEMBER m_hardwarePlatform)
@@ -51,14 +51,14 @@ class Pebble : public QObject
     Q_PROPERTY(QString language MEMBER m_language)
 
 public:
-    explicit Pebble(const QBluetoothAddress &address, QObject *parent = 0);
+    explicit Pebble(const QString &address, QObject *parent = 0);
 
-    QBluetoothAddress address() const;
+    QString address() const;
 
     QString name() const;
     void setName(const QString &name);
 
-    QBluetoothLocalDevice::Pairing pairingStatus() const;
+    bool paired() const;
 
     bool connected() const;
     void connect();
@@ -242,8 +242,7 @@ signals:
 private:
     void setHardwareRevision(HardwareRevision hardwareRevision);
 
-    QBluetoothAddress m_address;
-    QString m_name;
+    Device m_device;
     QDateTime m_softwareBuildTime;
     QString m_softwareVersion;
     QString m_softwareCommitRevision;

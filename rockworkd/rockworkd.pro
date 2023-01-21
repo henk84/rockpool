@@ -1,4 +1,4 @@
-QT += core bluetooth dbus network contacts qml location
+QT += core dbus network contacts qml location
 QT -= gui
 
 TARGET = rockpoold
@@ -7,7 +7,7 @@ CONFIG += c++11
 CONFIG += console
 CONFIG += link_pkgconfig
 
-PKGCONFIG += qt5-boostable libmkcal-qt5 KF5CalendarCore dbus-1 mpris-qt5 timed-qt5 Qt5WebSockets quazip1-qt5
+PKGCONFIG += qt5-boostable libmkcal-qt5 KF5CalendarCore KF5BluezQt dbus-1 mpris-qt5 timed-qt5 Qt5WebSockets quazip1-qt5
 
 SOURCES += main.cpp \
     libpebble/watchconnection.cpp \

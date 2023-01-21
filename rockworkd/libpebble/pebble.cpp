@@ -41,12 +41,12 @@
 #include <QNetworkReply>
 #include <QTemporaryFile>
 
-Pebble::Pebble(const QBluetoothAddress &address, QObject *parent):
+Pebble::Pebble(const Device &device, QObject *parent):
     QObject(parent),
-    m_address(address),
+    m_device(device),
     m_nam(new QNetworkAccessManager(this))
 {
-    QString watchPath = m_address.toString().replace(':', '_');
+    QString watchPath = device.address().replace(':', '_');
     m_storagePath = QStandardPaths::writableLocation(QStandardPaths::DataLocation) + "/" + watchPath + "/";
     m_imagePath = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation) + "/Screenshots/Pebble/";
 
@@ -196,12 +196,12 @@ Pebble::Pebble(const QBluetoothAddress &address, QObject *parent):
 
 QBluetoothAddress Pebble::address() const
 {
-    return m_address;
+    return m_device.address();
 }
 
 QString Pebble::name() const
 {
-    return m_name;
+    return m_device.name();
 }
 
 void Pebble::setName(const QString &name)
@@ -209,10 +209,9 @@ void Pebble::setName(const QString &name)
     m_name = name;
 }
 
-QBluetoothLocalDevice::Pairing Pebble::pairingStatus() const
+bool Pebble::isPaired() const
 {
-    QBluetoothLocalDevice dev;
-    return dev.pairingStatus(m_address);
+    return m_device.isPaired();
 }
 
 bool Pebble::connected() const

@@ -2,9 +2,6 @@
 #define WATCHCONNECTION_H
 
 #include <QObject>
-#include <QBluetoothAddress>
-#include <QBluetoothSocket>
-#include <QBluetoothLocalDevice>
 #include <QtEndian>
 #include <QPointer>
 #include <QTimer>

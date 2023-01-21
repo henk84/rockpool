@@ -13,7 +13,6 @@ URL:        http://getpebble.com/
 Source0:    %{name}-%{version}.tar.xz
 Requires:   systemd-user-session-targets
 BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Bluetooth)
 BuildRequires:  pkgconfig(Qt5Contacts)
 BuildRequires:  pkgconfig(Qt5Quick)
 BuildRequires:  pkgconfig(Qt5Qml)
@@ -30,6 +29,7 @@ BuildRequires:  pkgconfig(icu-i18n)
 BuildRequires:  pkgconfig(zlib)
 BuildRequires:  pkgconfig(libmkcal-qt5)
 BuildRequires:  pkgconfig(KF5CalendarCore)
+BuildRequires:  pkgconfig(KF5BluezQt)
 BuildRequires:  pkgconfig(sailfishwebengine)
 BuildRequires:  pkgconfig(qt5embedwidget)
 BuildRequires:  pkgconfig(quazip1-qt5)

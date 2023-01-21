@@ -27,7 +27,7 @@ private slots:
 private:
     void setupPebble(Pebble *pebble);
 
-    BluezClient *m_bluezClient;
+    BluezQt::Manager *m_bluezManager;
 
     QList<Pebble*> m_pebbles;
 };
